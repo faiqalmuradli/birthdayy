@@ -367,7 +367,7 @@ function loadNormalized(path, position, targetSize, rotation = {x:0,y:0,z:0}, on
 // ─── Load your models ─────────────────────────────────────────────────────────
 // Load table first → measure its actual top surface → place cake & frames on it
 
-loadNormalized('./table.glb',
+loadNormalized('./models/table.glb',
     { x: 0, y: 0, z: -0.2 },
     0.85,
     { x: 0, y: 0, z: 0 },
@@ -378,7 +378,7 @@ loadNormalized('./table.glb',
         console.log('Table top Y:', tableTop);
 
         // Cake sits exactly on the table top surface
-        loadNormalized('./fo3_birthday_cake.glb',
+        loadNormalized('./models/fo3_birthday_cake.glb',
             { x: 0, y: tableTop, z: -0.2 },
             0.45,   
             { x: 0, y: 0, z: 0 }
