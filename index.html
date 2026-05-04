@@ -390,7 +390,7 @@ loadNormalized('./models/table.glb',
             0.28,
             { x: 0, y: 0.25, z: 0 }
         );
-        loadNormalized('./picture_frame.glb',
+        loadNormalized('./models/picture_frame.glb',
             { x:  0.30, y: tableTop, z: -0.42 },
             0.28,
             { x: 0, y: -0.25, z: 0 }
@@ -416,29 +416,18 @@ for (let i = 0; i < capyCount; i++) {
         0.6,
         { x: 0, y: faceAngle, z: 0 },
         (model) => {
-            const texLoader = new THREE.TextureLoader();
-            texLoader.load(
-                './furryrodent3dmodel_basecolor_0.jpeg',
-                (capyTex) => {
-                    if (THREE.sRGBEncoding !== undefined) capyTex.encoding = THREE.sRGBEncoding;
-                    capyTex.needsUpdate = true;
-                    model.traverse(child => {
-                        if (child.isMesh) {
-                            child.castShadow = true;
-                            child.receiveShadow = true;
-                            child.material = new THREE.MeshStandardMaterial({
-                                map: capyTex,
-                                roughness: 0.85,
-                                metalness: 0.0,
-                            });
-                            child.material.needsUpdate = true;
-                        }
-                    });
-                },
-                undefined,
-                (err) => console.warn('Texture missing:', err)
-            );
+    model.traverse(child => {
+        if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            if (child.material) {
+                child.material.roughness = 0.85;
+                child.material.metalness = 0.2;
+                child.material.needsUpdate = true;
+            }
         }
+    });
+}
     );
 }
 
